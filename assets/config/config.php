@@ -8,6 +8,10 @@ return [
         FeatureCommands\FeatureMakeCommand::class,
         FeatureCommands\InstallMakeCommand::class
     ],
+    'libs' => [
+        'model' => 'Models',
+        'contract' => 'Contracts'
+    ],
     'database' => [
         'models' => [
             'MasterFeature'   => FeatureModels\Feature\MasterFeature::class,
