@@ -29,20 +29,16 @@ return new class extends Migration
         if (!$this->isTableExists()) {
             Schema::create($table_name, function (Blueprint $table) {
                 $masterFeature  = app(config('database.models.MasterFeature', MasterFeature::class));
-                $modelHasVersion = app(config('database.models.ModelHasVersion', ModelHasVersion::class));
 
                 $table->ulid('id')->primary();
                 $table->string('model_type', 50)->nullable(false);
                 $table->string('model_id', 36)->nullable(false);
                 $table->foreignIdFor($masterFeature::class)->nullable(false)
                     ->index()->constrained()->restrictOnDelete()->cascadeOnUpdate();
-                $table->foreignIdFor($modelHasVersion::class)->nullable(false)
-                    ->index()->constrained()->restrictOnDelete()->cascadeOnUpdate();
                 $table->timestamps();
                 $table->softDeletes();
 
                 $table->index(['model_type', 'model_id'], 'feature_model');
-                $table->index([$masterFeature->getForeignKey(), $modelHasVersion->getForeignKey()], 'feature_master');
             });
         }
 
