@@ -2,14 +2,23 @@
 
 namespace Hanafalah\LaravelFeature\Supports;
 
+use Hanafalah\LaravelSupport\Contracts\Supports\DataManagement;
 use Hanafalah\LaravelSupport\Supports\PackageManagement;
-use Hanafalah\LaravelFeature\Concerns;
 
-class BaseLaravelFeature extends PackageManagement
+class BaseLaravelFeature extends PackageManagement implements DataManagement
 {
-    use Concerns\HasSetupFeature;
-    use Concerns\FinderTrait;
+    protected $__config_name = 'laravel-feature';
+    protected $__laravel_feature_config = [];
 
-    /** @var array */
-    protected $__feature_config = [];
+    /**
+     * A description of the entire PHP function.
+     *
+     * @param Container $app The Container instance
+     * @throws Exception description of exception
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->setConfig($this->__config_name, $this->__laravel_feature_config);
+    }
 }

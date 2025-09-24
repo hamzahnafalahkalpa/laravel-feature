@@ -2,20 +2,7 @@
 
 namespace Hanafalah\LaravelFeature;
 
-use Illuminate\Contracts\Container\Container;
-use Hanafalah\LaravelFeature\Supports\BaseLaravelFeature;
+use Hanafalah\LaravelSupport\Supports\PackageManagement;
+use Hanafalah\LaravelFeature\Contracts\LaravelFeature as ContractsLaravelFeature;
 
-class LaravelFeature extends BaseLaravelFeature
-{
-    /**
-     * A description of the entire PHP function.
-     *
-     * @param Container $app The Container instance
-     * @throws Exception description of exception
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->setConfig('laravel-feature', $this->__feature_config);
-    }
-}
+class LaravelFeature extends PackageManagement implements ContractsLaravelFeature{}

@@ -5,43 +5,24 @@ namespace Hanafalah\LaravelFeature\Schemas;
 use Hanafalah\LaravelFeature\{
     Supports\BaseLaravelFeature
 };
+use Hanafalah\LaravelFeature\Contracts\Data\MasterFeatureData;
 use Hanafalah\LaravelSupport\Contracts\Supports\DataManagement;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 
 class MasterFeature extends BaseLaravelFeature implements DataManagement
 {
     protected string $__entity = 'MasterFeature';
-    protected $__feature;
+    public $master_feature_model;
 
-    /**
-     * Add a new feature version to the master feature.
-     *
-     * @param string $version The version name.
-     *
-     * @return self The current instance.
-     */
-    public function addFeatureVersion($version): self
-    {
-        $model = self::$__model;
-        $this->childSchema(ModuleVersion::class, function ($class) use ($version, $model) {
-            $class->add([
-                'model_id'   => $model->getKey(),
-                'model_type' => $model->getMorphClass(),
-                'name'       => $version
-            ]);
-        });
-        return $this;
+    public function prepareStoreMasterFeature(MasterFeatureData $master_feature_dto): Model{
+        $master_feature = $this->prepareStoreUnicode($master_feature_dto);
+        $this->fillingProps($master_feature,$master_feature_dto->props);
+        $master_feature->save();
+        return $this->master_feature_model = $master_feature;
     }
 
-    public function remove($featureId = null): self
-    {
-        $featureId ??= $this->__feature->getKey();
-        if (isset($featureId)) $this->MasterFeatureModel()->delete($featureId);
-        return $this;
+    public function masterFeature(mixed $conditionals = null): Builder{
+        return $this->featureStuff($conditionals);
     }
-
-    //GETTER SECTION
-    public function getFeatureList($conditionls = null): \Illuminate\Database\Eloquent\Collection{
-        return $this->MasterFeatureModel()->conditionals($conditionls)->get();
-    }
-    //END GETTER SECTION
 }

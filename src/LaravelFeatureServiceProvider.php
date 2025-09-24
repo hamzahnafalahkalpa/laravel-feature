@@ -10,14 +10,7 @@ class LaravelFeatureServiceProvider extends BaseServiceProvider
     {
         $this->registerMainClass(LaravelFeature::class)
             ->registerCommandService(Providers\CommandServiceProvider::class)
-            ->registers([
-                '*',
-                'Services' => function () {
-                    $this->binds([
-                        Contracts\LaravelFeature::class => new LaravelFeature()
-                    ]);
-                }
-            ]);
+            ->registers(['*']);
     }
 
     /**
