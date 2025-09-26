@@ -23,6 +23,7 @@ class Version extends BaseModel
         'name',
         'version',
         'master_feature_id',
+        'price',
         'props'
     ];
 

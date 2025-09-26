@@ -36,6 +36,7 @@ return new class extends Migration
                 $table->string('version', 50)->nullable(false);
                 $table->foreignIdFor($master_feature_model::class)->nullable(false)
                       ->index()->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+                $table->unsignedBigInteger('price')->nullable(true);
                 $table->json('props')->nullable();
                 $table->timestamps();
                 $table->softDeletes();

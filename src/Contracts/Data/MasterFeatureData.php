@@ -2,4 +2,4 @@
 
 namespace Hanafalah\LaravelFeature\Contracts\Data;
 
-interface MasterFeatureData {}
+interface MasterFeatureData extends FeatureStuffData{}

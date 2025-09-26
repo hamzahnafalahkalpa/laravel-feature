@@ -21,11 +21,23 @@ class VersionData extends Data implements DataVersionData
     #[MapName('version')]
     public string $version;
 
+    #[MapInputName('price')]
+    #[MapName('price')]
+    public ?int $price = null;
+
     #[MapInputName('master_feature_id')]
     #[MapName('master_feature_id')]
     public mixed $master_feature_id;
 
+    #[MapInputName('master_feature_model')]
+    #[MapName('master_feature_model')]
+    public ?object $master_feature_model = null;
+
     #[MapInputName('props')]
     #[MapName('props')]
     public ?array $props = null;
+
+    public static function before(array &$attributes){
+        $attributes['price'] ??= 0;
+    }
 }

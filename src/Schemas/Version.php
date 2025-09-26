@@ -34,7 +34,8 @@ class Version extends BaseLaravelFeature implements ContractsVersion
         }else{
             $guard = [
                 'version' => $version_dto->version,
-                'master_feature_id' => $version_dto->master_feature_id
+                'master_feature_id' => $version_dto->master_feature_id,
+                'price' => $version_dto->price
             ];
         }
         $create = [$guard, $add];

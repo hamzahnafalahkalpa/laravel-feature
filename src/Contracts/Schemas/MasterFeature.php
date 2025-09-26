@@ -3,6 +3,7 @@
 namespace Hanafalah\LaravelFeature\Contracts\Schemas;
 
 use Hanafalah\LaravelFeature\Contracts\Data\MasterFeatureData;
+use Hanafalah\LaravelSupport\Contracts\Schemas\Unicode;
 //use Hanafalah\LaravelFeature\Contracts\Data\MasterFeatureUpdateData;
 use Hanafalah\LaravelSupport\Contracts\Supports\DataManagement;
 use Illuminate\Database\Eloquent\Builder;
@@ -28,7 +29,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method array storeMultipleMasterFeature(array $datas)
  */
 
-interface MasterFeature extends DataManagement
+interface MasterFeature extends FeatureStuff
 {
     public function prepareStoreMasterFeature(MasterFeatureData $master_feature_dto): Model;
+    public function masterFeature(mixed $conditionals = null): Builder;
 }
