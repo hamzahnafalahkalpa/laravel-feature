@@ -19,6 +19,7 @@ class ViewInstalledFeature extends ApiResource
         'name' => $this->name,
         'model_type' => $this->model_type,
         'model_id' => $this->model_id,
+        'master_feature_type' => $this->master_feature_type,
         'master_feature_id' => $this->master_feature_id,
         'version_id' => $this->version_id
     ];
