@@ -37,7 +37,6 @@ class InstalledFeature extends BaseLaravelFeature implements ContractsInstalledF
             $guard = [
                 'model_type' => $installed_feature_dto->model_type,
                 'model_id' => $installed_feature_dto->model_id,
-                'master_feature_type' => $installed_feature_dto->master_feature_type,
                 'master_feature_id' => $installed_feature_dto->master_feature_id,
                 'version_id' => $installed_feature_dto->version_id
             ];

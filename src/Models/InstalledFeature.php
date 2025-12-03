@@ -21,7 +21,6 @@ class InstalledFeature extends BaseModel
         'name',
         'model_type',
         'model_id',
-        'master_feature_type',
         'master_feature_id',
         'version_id',
         'batch',
@@ -30,10 +29,9 @@ class InstalledFeature extends BaseModel
     ];
 
     public function getConditions(): array{
-        return ['model_type', 'model_id', 'master_feature_type', 'master_feature_id'];
+        return ['model_type', 'model_id', 'master_feature_id'];
     }
 
     public function model(){return $this->morphTo();}
     public function version(){return $this->belongsToModel('Version');}
-    public function masterFeature(){return $this->morphTo();}
 }

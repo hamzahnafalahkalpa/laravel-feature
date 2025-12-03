@@ -8,7 +8,7 @@ trait HasRestrictionFeature
     {
         static::addGlobalScope('restriction',function ($query) {
             $used_restrictions = (new static)->usedRestrictionAs();
-            if (config('laravel-feature.is_validate_restriction',true) && in_array('model', $used_restrictions)) {
+            if (in_array('model', $used_restrictions)) {
                 $query->where('props->is_restricted',false);
             }
         });
