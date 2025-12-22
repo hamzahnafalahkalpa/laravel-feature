@@ -38,7 +38,7 @@ return new class extends Migration
                     ->index()->constrained()->restrictOnDelete()->cascadeOnUpdate();
                 $table->foreignIdFor($version::class)->nullable(false)
                     ->index()->constrained()->restrictOnDelete()->cascadeOnUpdate();
-                $table->unsignedTinyInteger('current')->default(1)->nullable(false);
+                $table->timestamp('current')->nullable(true);
                 $table->unsignedTinyInteger('batch')->nullable();
                 $table->json('props')->nullable();
                 $table->timestamps();
